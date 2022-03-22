@@ -1,0 +1,132 @@
+@Test
+    void testAddEnd() {
+        Launcher.addEnd(new Stud(15, "Akhilesh"));
+        Launcher.addEnd(new Stud(10, "Akhilesh"));
+        LinkNode n = Launcher.head;
+        while(n.next!=null) {
+            n = n.next;
+        }
+        assertTrue(n.data.rollNo==10);
+        return;
+    }
+
+ 
+
+    @Test
+    void testAddMid() {
+        Launcher.addBeg(new Stud(7, "Harsh"));
+        Launcher.addBeg(new Stud(6, "Abhi"));
+        Launcher.addBeg(new Stud(3, "Viki"));
+        LinkNode c = Launcher.head;
+        int len=0,count=0;
+        while(c!=null) {
+            len++;
+            c=c.next;
+        }
+        if(len%2==0)
+            count = len/2;
+        else
+            count = (len+1)/2;
+        c = Launcher.head;
+        Launcher.addMid(new Stud(16, "Harsh"));
+        while(count!=1) {
+            c= c.next;
+            count--;
+        }
+        assertTrue(c.next.data.rollNo==16);
+        return;
+    }
+
+ 
+
+    @Test
+    void testAddBeg() {
+        Launcher.addBeg(new Stud(7, "Harsh"));
+        Launcher.addBeg(new Stud(6, "Abhi"));
+        Launcher.addBeg(new Stud(3, "Viki"));
+        assertTrue(Launcher.head.data.rollNo==3);
+        return;
+    }
+
+ 
+
+    @Test
+    void testDelEnd() {
+        Launcher.addBeg(new Stud(7, "Harsh"));
+        Launcher.addBeg(new Stud(6, "Abhi"));
+        Launcher.addEnd(new Stud(15, "Akhilesh"));
+        Launcher.addEnd(new Stud(10, "Akhilesh"));
+        int roll =0;
+        LinkNode n = Launcher.head;
+        while(n.next!=null) {
+            n = n.next;
+        }
+        roll = n.data.rollNo;
+        Launcher.delEnd();
+        n = Launcher.head;
+        while(n.next!=null) {
+            n = n.next;
+        }
+        assertTrue(roll != n.data.rollNo);
+        return;
+    }
+
+ 
+
+    @Test
+    void testAddAfterRoll() {
+        Launcher.addEnd(new Stud(15, "Akhilesh"));
+        Launcher.addEnd(new Stud(12, "Amit"));
+        Launcher.addEnd(new Stud(25, "Abhishek"));
+        Launcher.addEnd(new Stud(20, "Arvind"));
+        Launcher.addAfterRoll(12, new Stud(1,"A"));
+        LinkNode n = Launcher.head;
+        while(n!=null) {
+            if(n.data.rollNo==12) {
+                assertTrue(n.next.data.rollNo==1);
+            }
+            n = n.next;
+        }
+        return;
+    }
+
+ 
+
+    @Test
+    void testAddBeforeRoll() {
+        Launcher.addEnd(new Stud(15, "Akhilesh"));
+        Launcher.addEnd(new Stud(10, "Amit"));
+        Launcher.addEnd(new Stud(25, "Abhishek"));
+        Launcher.addEnd(new Stud(20, "Arvind"));
+        Launcher.addBeforeRoll(10, new Stud(18,"Abhinav"));
+        LinkNode n = Launcher.head;
+        while(n!=null) {
+            if(n.data.rollNo==18) {
+                assertTrue(n.next.data.rollNo==10);
+            }
+            n = n.next;
+        }
+        return;
+    }
+
+ 
+
+    @Test
+    void testDelRoll() {
+        Launcher.addBeg(new Stud(7, "Harsh"));
+        Launcher.addBeg(new Stud(6, "Abhi"));
+        Launcher.addEnd(new Stud(15, "Akhilesh"));
+        Launcher.addEnd(new Stud(10, "Akhilesh"));
+        int roll =6;
+        Launcher.delRoll(roll);
+        byte count = 0;
+        LinkNode n = Launcher.head;
+        while(n.next!=null) {
+            if(n.data.rollNo==roll)
+                count++;
+            n = n.next;
+        }
+        assertTrue(count==0);
+        return;
+    }
+ 
